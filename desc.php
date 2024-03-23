@@ -7,6 +7,14 @@ use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
 use CSaleActionCtrlAction;
 
+$eventManager = \Bitrix\Main\EventManager::getInstance();
+
+$eventManager->addEventHandler(
+    'sale',
+    'OnCondSaleControlBuildList',
+    [\App\Modules\Sale\Conditions\AdditionalConditionControlStore::class, 'GetControlDescr']
+);
+
 class AdditionalConditionControlStore extends CSaleActionCtrlAction
 {
     /**
